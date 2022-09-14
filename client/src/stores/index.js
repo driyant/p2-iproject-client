@@ -75,5 +75,12 @@ export const useIndexStore = defineStore("index", {
         }
       }
     },
+    logoutHandler() {
+      // console.log("Logout");
+      localStorage.clear();
+      this.isLoggedin = false;
+      showToastSuccess("Bye, have a nice day 😀");
+      this.router.push("/login");
+    },
   },
 });
