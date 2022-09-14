@@ -118,5 +118,22 @@ export const useIndexStore = defineStore("index", {
         console.log(error);
       }
     },
+    async addTicketOrder(id) {
+      // console.log(id);
+      try {
+        const response = await axios({
+          url: `${this.url}/order/${id}`,
+          method: "POST",
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        // console.log(response);
+        showToastSuccess(response.data.message);
+      } catch (error) {
+        // console.log(error);
+        showToastError("Something went wrong");
+      }
+    },
   },
 });

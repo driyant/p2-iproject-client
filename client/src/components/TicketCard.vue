@@ -9,9 +9,6 @@
           :src="ticket.img_url"
           :alt="ticket.ticketEvent"
         />
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
       </div>
       <!-- Card content -->
       <div class="card-body">
@@ -28,7 +25,9 @@
           Date: {{ ticket.date.slice(0, 10) }}
         </p>
         <!-- Button -->
-        <a href="" class="btn btn-primary" v-on:click.prevent="ticket.id"
+        <a
+          class="btn btn-primary"
+          v-on:click.prevent="addTicketOrder(ticket.id)"
           >Buy Ticket</a
         >
       </div>
@@ -38,7 +37,12 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import { useIndexStore } from "../stores";
 export default {
   props: ["ticket"],
+  methods: {
+    ...mapActions(useIndexStore, ["addTicketOrder"]),
+  },
 };
 </script>
