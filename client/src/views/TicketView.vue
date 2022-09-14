@@ -15,9 +15,12 @@
             <div class="row mb-5">
               <div class="col d-flex justify-content-center align-items-center">
                 <div class="row">
-                  <ticket-card></ticket-card>
-                  <ticket-card></ticket-card>
-                  <ticket-card></ticket-card>
+                  <ticket-card
+                    v-for="ticket in tickets"
+                    :key="ticket.id"
+                    :ticket="ticket"
+                  >
+                  </ticket-card>
                 </div>
                 <!-- end div row card -->
               </div>
@@ -48,11 +51,11 @@ export default {
   components: {
     TicketCard,
   },
-  methods: {
-    ...mapActions(useIndexStore, ["fetchTicket"]),
-  },
   computed: {
     ...mapState(useIndexStore, ["tickets"]),
+  },
+  methods: {
+    ...mapActions(useIndexStore, ["fetchTicket"]),
   },
   created() {
     this.fetchTicket();

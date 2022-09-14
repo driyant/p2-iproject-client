@@ -24,12 +24,18 @@
 <script>
 import NavBar from "../components/NavBar.vue";
 import JumboTron from "../components/JumboTron.vue";
-// import { useIndexStore } from "../stores/index";
-// import { mapActions, mapState } from "pinia";
+import { mapActions } from "pinia";
+import { useIndexStore } from "../stores/index";
 export default {
   components: {
     NavBar,
     JumboTron,
+  },
+  methods: {
+    ...mapActions(useIndexStore, ["fetchTicket"]),
+  },
+  created() {
+    this.fetchTicket();
   },
 };
 </script>

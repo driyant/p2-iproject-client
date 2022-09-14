@@ -104,5 +104,19 @@ export const useIndexStore = defineStore("index", {
         this.isLoading = false;
       }
     },
+    async fetchTicket() {
+      try {
+        const response = await axios({
+          url: `${this.url}/ticket`,
+          method: "GET",
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        this.tickets = response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

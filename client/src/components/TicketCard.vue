@@ -6,25 +6,31 @@
       <div class="view overlay">
         <img
           class="card-img-top"
-          src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).webp"
-          alt="Card image cap"
+          :src="ticket.img_url"
+          :alt="ticket.ticketEvent"
         />
         <a href="#!">
           <div class="mask rgba-white-slight"></div>
         </a>
       </div>
-
       <!-- Card content -->
       <div class="card-body">
         <!-- Title -->
-        <h4 class="card-title">Ticket Regular</h4>
+        <h4 class="card-title">{{ ticket.ticketEvent }}</h4>
         <!-- Text -->
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          Price: {{ ticket.price }}
+          <br />
+          Venue: {{ ticket.venue }}
+          <br />
+          Time: {{ ticket.time }}
+          <br />
+          Date: {{ ticket.date.slice(0, 10) }}
         </p>
         <!-- Button -->
-        <a href="#" class="btn btn-primary">Book</a>
+        <a href="" class="btn btn-primary" v-on:click.prevent="ticket.id"
+          >Buy Ticket</a
+        >
       </div>
     </div>
     <!-- Card -->

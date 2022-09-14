@@ -103,7 +103,10 @@ export default {
     ...mapState(useIndexStore, ["isLoggedin"]),
   },
   methods: {
-    ...mapActions(useIndexStore, ["logoutHandler"]),
+    ...mapActions(useIndexStore, ["logoutHandler", "checkisLogin"]),
+  },
+  created() {
+    this.checkisLogin();
   },
 };
 </script>

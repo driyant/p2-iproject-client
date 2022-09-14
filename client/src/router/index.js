@@ -2,10 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import InfoView from "../views/InfoView.vue";
-import TicketView from "../views/TicketView.vue";
+// import TicketView from "../views/TicketView.vue";
 import ContactView from "../views/ContactView.vue";
 import SignUpView from "../views/SignUpView.vue";
 import OrderDetailView from "../views/OrderDetailView.vue";
+import LineUpView from "../views/LineUpView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,12 +19,12 @@ const router = createRouter({
     {
       path: "/lineup",
       name: "lineup",
-      component: () => import("../views/LineUpView.vue"),
+      component: LineUpView,
     },
     {
       path: "/ticket",
       name: "ticket",
-      component: TicketView,
+      component: () => import("../views/TicketView.vue"),
     },
     {
       path: "/contact",
