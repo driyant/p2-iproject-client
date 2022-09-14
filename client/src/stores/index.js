@@ -45,6 +45,11 @@ export const useIndexStore = defineStore("index", {
     };
   },
   actions: {
+    checkisLogin() {
+      if (localStorage.getItem("access_token")) {
+        this.isLoggedin = true;
+      }
+    },
     async loginHandler(email, password) {
       try {
         const response = await axios({
