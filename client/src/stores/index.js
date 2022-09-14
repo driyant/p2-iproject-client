@@ -82,5 +82,27 @@ export const useIndexStore = defineStore("index", {
       showToastSuccess("Bye, have a nice day 😀");
       this.router.push("/login");
     },
+    async sendMessageHandler(email, subject, message) {
+      // console.log(email, subject, message);
+      this.isLoading = true;
+      try {
+        const response = await axios({
+          url: `${this.url}/contact`,
+          method: "POST",
+          data: {
+            email: email,
+            subject: subject,
+            message: message,
+          },
+        });
+        console.log(response);
+        showToastSuccess("Thank you, message has been sent successfully!");
+        this.isLoading = false;
+      } catch (error) {
+        console.log(error);
+        showToastError("Something went wrong.");
+        this.isLoading = false;
+      }
+    },
   },
 });
