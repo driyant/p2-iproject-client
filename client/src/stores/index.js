@@ -45,7 +45,7 @@ export const useIndexStore = defineStore("index", {
       currencies: undefined,
       resultConverted: 0,
       numberConverted: 0,
-      url: "http://localhost:3000",
+      url: "https://ipj-al.herokuapp.com",
     };
   },
   actions: {
