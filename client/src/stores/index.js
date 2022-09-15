@@ -43,6 +43,8 @@ export const useIndexStore = defineStore("index", {
       tickets: [],
       orders: [],
       currencies: undefined,
+      resultConverted: 0,
+      numberConverted: 0,
       url: "http://localhost:3000",
     };
   },
@@ -203,6 +205,21 @@ export const useIndexStore = defineStore("index", {
         this.isLoading = false;
         console.log(error);
         showToastError("Something went wrong");
+      }
+    },
+    async convert(numberConverted) {
+      try {
+        const response = await axios({
+          url: `https://api.apilayer.com/exchangerates_data/convert?to=USD&from=IDR&amount=${numberConverted}`,
+          method: "GET",
+          headers: {
+            apiKey: "USn5XuwkeU4R0Lg25ZF3ZJ188cv01uVU",
+          },
+        });
+        console.log(response);
+        this.numberConverted = response.data.result;
+      } catch (error) {
+        console.log(error);
       }
     },
   },

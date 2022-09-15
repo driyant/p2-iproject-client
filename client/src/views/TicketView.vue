@@ -25,17 +25,32 @@
                 <!-- end div row card -->
               </div>
             </div>
-            <div class="row">
+            <div class="row d-flex flex-row justify-content-center text-center">
               <h3>Currency Exchange</h3>
-              <select name="" id="">
-                <option
-                  value=""
-                  v-for="(currency, index) in currencies.rates"
-                  :key="index"
+              <div class="form-outline mb-4">
+                <input
+                  type="number"
+                  min="0"
+                  id="form1Example1"
+                  class="form-control"
+                  v-model="number"
+                  placeholder="Number want to convert in IDR - USD"
+                />
+                <label class="form-label" for="form1Example1"
+                  >Number that want to convert in IDR - USD</label
                 >
-                  {{ currency }}
-                </option>
-              </select>
+              </div>
+              <!-- Submit button -->
+              <button
+                type="submit"
+                v-on:click.prevent="convert(number)"
+                class="btn btn-primary btn-block"
+              >
+                Convert
+              </button>
+            </div>
+            <div class="ro mt-2">
+              <p>Result: USD {{ this.numberConverted }}</p>
             </div>
             <div class="row mt-5">
               <footer class="text-center">
@@ -60,17 +75,35 @@ export default {
   components: {
     TicketCard,
   },
+  data() {
+    return {
+      number: 0,
+    };
+  },
   computed: {
-    ...mapState(useIndexStore, ["tickets", "currencies"]),
+    ...mapState(useIndexStore, [
+      "tickets",
+      "currencies",
+      "resultConverted",
+      "numberConverted",
+    ]),
   },
   methods: {
-    ...mapActions(useIndexStore, ["fetchTicket"]),
+    ...mapActions(useIndexStore, ["fetchTicket", "convert"]),
   },
   created() {
     this.fetchTicket();
+    this.resultConverted;
+    this.numberConverted;
     this.tickets;
     this.currencies;
     console.log(this.currencies);
+  },
+  mounted() {
+    this.numberConverted;
+  },
+  updated() {
+    this.numberConverted;
   },
 };
 </script>
