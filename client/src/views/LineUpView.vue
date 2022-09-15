@@ -1,5 +1,5 @@
 <template>
-  <div id="intro" class="p-4 text-center bg-light">
+  <div id="intro" class="p-5 text-center bg-light">
     <h1 class="mb-3 h2">Line Up Artists</h1>
     <p class="mb-3">We invite the best performers.</p>
   </div>

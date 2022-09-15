@@ -1,5 +1,5 @@
 <template>
-  <div id="intro" class="p-4 text-center bg-light">
+  <div id="intro" class="p-5 text-center bg-light">
     <h1 class="mb-3 h2">Ticket</h1>
     <p class="mb-3">Grab your ticket fast.</p>
   </div>
@@ -27,6 +27,15 @@
             </div>
             <div class="row">
               <h3>Currency Exchange</h3>
+              <select name="" id="">
+                <option
+                  value=""
+                  v-for="(currency, index) in currencies.rates"
+                  :key="index"
+                >
+                  {{ currency }}
+                </option>
+              </select>
             </div>
             <div class="row mt-5">
               <footer class="text-center">
@@ -52,7 +61,7 @@ export default {
     TicketCard,
   },
   computed: {
-    ...mapState(useIndexStore, ["tickets"]),
+    ...mapState(useIndexStore, ["tickets", "currencies"]),
   },
   methods: {
     ...mapActions(useIndexStore, ["fetchTicket"]),
@@ -60,6 +69,8 @@ export default {
   created() {
     this.fetchTicket();
     this.tickets;
+    this.currencies;
+    console.log(this.currencies);
   },
 };
 </script>

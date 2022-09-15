@@ -40,16 +40,31 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginView,
+      beforeEnter: () => {
+        if (localStorage.getItem("access_token")) {
+          return { path: "/" };
+        }
+      },
     },
     {
       path: "/signup",
       name: "signup",
       component: SignUpView,
+      beforeEnter: () => {
+        if (localStorage.getItem("access_token")) {
+          return { path: "/" };
+        }
+      },
     },
     {
       path: "/order",
       name: "order",
       component: OrderDetailView,
+      beforeEnter: () => {
+        if (!localStorage.getItem("access_token")) {
+          return { path: "/login" };
+        }
+      },
     },
     // {
     //   path: '/about',

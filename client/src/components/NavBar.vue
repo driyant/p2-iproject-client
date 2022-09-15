@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container-fluid">
       <!-- Navbar brand -->
-      <a
+      <!-- <a
         class="navbar-brand"
         target="_blank"
         href="https://mdbootstrap.com/docs/standard/"
@@ -26,7 +26,7 @@
         aria-label="Toggle navigation"
       >
         <i class="fas fa-bars"></i>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">

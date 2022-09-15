@@ -42,6 +42,7 @@ export const useIndexStore = defineStore("index", {
       isLoading: false,
       tickets: [],
       orders: [],
+      currencies: undefined,
       url: "http://localhost:3000",
     };
   },
@@ -87,7 +88,7 @@ export const useIndexStore = defineStore("index", {
       // console.log(email, subject, message);
       this.isLoading = true;
       try {
-        const response = await axios({
+        await axios({
           url: `${this.url}/contact`,
           method: "POST",
           data: {
@@ -96,7 +97,7 @@ export const useIndexStore = defineStore("index", {
             message: message,
           },
         });
-        console.log(response);
+        // console.log(response);
         showToastSuccess("Thank you, message has been sent successfully!");
         this.isLoading = false;
       } catch (error) {
@@ -115,6 +116,7 @@ export const useIndexStore = defineStore("index", {
           },
         });
         this.tickets = response.data;
+        this.fetchExchange();
       } catch (error) {
         console.log(error);
       }
@@ -166,6 +168,41 @@ export const useIndexStore = defineStore("index", {
         console.log(error);
         showToastError("Something went wrong!");
         this.fetchOrderDetail();
+      }
+    },
+    async fetchExchange() {
+      try {
+        const response = await axios({
+          url: "https://api.exchangerate.host/latest",
+          method: "GET",
+        });
+        this.currencies = response.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async register(username, email, password, fullName, phoneNumber) {
+      // console.log(username, email, password, fullName, phoneNumber);
+      this.isLoading = true;
+      try {
+        await axios({
+          url: `${this.url}/user/public/register`,
+          method: "POST",
+          data: {
+            username: username,
+            email: email,
+            password: password,
+            fullName: fullName,
+            phoneNumber: phoneNumber,
+          },
+        });
+        this.isLoading = false;
+        showToastSuccess("Success!");
+        this.router.push("/login");
+      } catch (error) {
+        this.isLoading = false;
+        console.log(error);
+        showToastError("Something went wrong");
       }
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div id="intro" class="p-4 text-center bg-light">
+  <div id="intro" class="p-5 text-center bg-light">
     <h1 class="mb-3 h2">Register Account</h1>
     <p class="mb-3">Sign up acccout and grab your ticket.</p>
   </div>
@@ -50,6 +50,20 @@
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline mb-4">
+                            <input
+                              type="text"
+                              id="fullName"
+                              class="form-control"
+                              v-model="fullName"
+                            />
+                            <label class="form-label" for="form1Example1"
+                              >Fullname</label
+                            >
+                          </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
                             <input
@@ -93,7 +107,7 @@
                               )
                             "
                           >
-                            Register
+                            {{ isLoading ? "Register" : "Submitting" }}
                           </button>
                         </div>
                       </form>
@@ -134,7 +148,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions(useIndexStore, ["register"]),
+    ...mapActions(useIndexStore, ["register", "isLoading"]),
+  },
+  created() {
+    this.isLoading;
   },
 };
 </script>

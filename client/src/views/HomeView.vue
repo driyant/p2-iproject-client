@@ -8,17 +8,19 @@
     <!-- Jumbotron -->
   </header>
   <!--Main layout-->
-  <main class="my-5">
+  <!--Section: Content-->
+  <!-- <main class="my-5">
     <div class="container">
-      <!--Section: Content-->
+      
       <section class="mt-2">
         <div class="row gx-5">
           <p>content here</p>
         </div>
       </section>
-      <!--Section: Content-->
+
     </div>
-  </main>
+  </main> -->
+  <!--Section: Content-->
 </template>
 
 <script>

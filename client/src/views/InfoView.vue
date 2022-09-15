@@ -1,5 +1,5 @@
 <template>
-  <div id="intro" class="p-4 text-center bg-light">
+  <div id="intro" class="p-5 text-center bg-light">
     <h1 class="mb-3 h2">Event Info</h1>
     <p class="mb-3">All you need to know</p>
   </div>
