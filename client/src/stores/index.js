@@ -41,6 +41,7 @@ export const useIndexStore = defineStore("index", {
       isLoggedin: false,
       isLoading: false,
       tickets: [],
+      orders: [],
       url: "http://localhost:3000",
     };
   },
@@ -133,6 +134,38 @@ export const useIndexStore = defineStore("index", {
       } catch (error) {
         // console.log(error);
         showToastError("Something went wrong");
+      }
+    },
+    async fetchOrderDetail() {
+      try {
+        const response = await axios({
+          url: `${this.url}/order`,
+          method: "GET",
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        this.orders = response.data;
+      } catch (error) {
+        showToastError("Something went wrong");
+      }
+    },
+    async payProcess(id) {
+      try {
+        const response = await axios({
+          url: `${this.url}/order/${id}`,
+          method: "PATCH",
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        console.log(response);
+        showToastSuccess("Success");
+        this.fetchOrderDetail();
+      } catch (error) {
+        console.log(error);
+        showToastError("Something went wrong!");
+        this.fetchOrderDetail();
       }
     },
   },
